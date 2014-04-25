@@ -3,7 +3,7 @@
 makeCacheMatrix <- function(x = matrix()) 
 {
         m   <- NULL
-        #define 4 local funtions
+        ## define 4 local funtions
         set <- function(y) {
                 x <<- y
                 m <<- NULL
@@ -11,7 +11,7 @@ makeCacheMatrix <- function(x = matrix())
         get <- function() x
         setinverse <- function(inverse) m <<- inverse
         getinverse <- function() m
-        #put all 4 functions in a list-structure
+        ## put all 4 functions in a list-structure
         list(set = set, 
              get = get,
              setinverse = setinverse,
@@ -26,12 +26,14 @@ makeCacheMatrix <- function(x = matrix())
 cacheSolve <- function(x, ...) 
 {
         m <- x$getinverse()
-        print (m)
-        if(!is.null(m)) {
+        if(!is.null(m)) 
+        {
+                ## the inverse is already there
                 message("getting cached data")                
         }
         else
         {
+                ## calculate the inverse with solve
                 data <- x$get()
                 m <- solve(data, ...)
                 x$setinverse(m)                
